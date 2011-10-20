@@ -1,0 +1,21 @@
+Retro - A widescreen theme for MythTV
+
+The old Retro theme based on the excellent Blue-abstract theme from Robert Siebert.
+
+
+COMPATIBILITY
+=============
+
+* Works for MythTV 0.24 & 0.25 (not all new screens are supported)
+
+INSTALL
+=======
+
+* got into directory of your choice
+* clone the repo: git clone git://github.com/notz/Retro-wide.git 
+* link the theme: sudo ln -s Retro-wide /usr/share/mythtv/themes/
+
+TODO
+====
+
+* OSD is not finished completly
