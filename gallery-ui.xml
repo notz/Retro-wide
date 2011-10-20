@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mythuitheme SYSTEM "http://www.mythtv.org/schema/mythuitheme.dtd">
+<mythuitheme>
+
+    <!-- Default screen that shows the the available images in a list -->
+    <window name="gallery">
+
+        <imagetype name="fanart" from="base_background"/>
+        
+        <textarea name="heading" from="base_heading">
+            <position>0,0</position>
+            <textarea name="text">
+                <value>Image Gallery</value>
+            </textarea>
+        </textarea>
+
+        <textarea name="clock" from="base_clock">
+            <position>1040,0</position>
+        </textarea>
+
+        <shape name="imagelist_background" from="base_background_shape">
+            <area>25,60,1230,633</area>
+        </shape>
+
+        <!-- shows the name of the folder or image -->
+        <textarea name="title" from="base_textarea">
+            <area>45,80,900,30</area>
+            <cutdown>yes</cutdown>
+            <font>title</font>
+            <align>left,vcenter</align>
+        </textarea>
+
+        <!-- optional - shows current position in grid eg '1 of 123' -->
+        <textarea name="position" from="base_textarea">
+            <area>985,80,250,30</area>
+            <align>right,vcenter</align>
+        </textarea>
+
+        <!-- shows path to current image -->
+        <textarea name="breadcrumbs" from="base_textarea">
+            <area>45,120,1000,20</area>
+            <font>text_very_small</font>
+            <cutdown>yes</cutdown>
+        </textarea>
+
+        <!-- the list that shows the images in the screen -->
+        <buttonlist name="images">
+            <area>45,155,1170,535</area>
+            <buttonarea>0,0,1190,535</buttonarea>
+            <wrapstyle>flowing</wrapstyle>
+            <layout>grid</layout>
+            <spacing>7</spacing>
+            <statetype name="buttonitem">
+                
+                <state name="active">
+                    <area>0,0,164,124</area>
+                    
+                    <imagetype name="buttonimage_background">
+                        <shape name="buttonimage_background_shape" from="base_background_shape">
+                            <area>0,0,164,124</area>
+                            <line color="#000000" alpha="0" width="1" />
+                        </shape>
+                    </imagetype>
+                    
+                    <!-- this shows the actual image -->
+                    <imagetype name="buttonimage">
+                        <area>2,2,160,120</area>
+                        <preserveaspect>yes</preserveaspect>
+                    </imagetype>
+
+                    <imagetype name="buttonimage_border">
+                        <shape name="buttonimage_border_shape" from="base_background_shape">
+                            <area>0,0,164,124</area>
+                            <fill color="#000000" alpha="0" />
+                        </shape>
+                    </imagetype>
+                    
+                    <!-- shows that the image was marked/selected and
+                        might be manipulated with other images -->
+                    <statetype name="buttoncheck">
+                        <position>2,2</position>
+                        <showempty>yes</showempty>
+                        <state type="full">
+                            <shape name="marked_background" from="base_background_shape">
+                                <area>0,0,33,33</area>
+                                <line color="#000000" alpha="0" width="1" />
+                            </shape>
+                            <imagetype name="marked">
+                                <filename>images/shared/file_marked.png</filename>
+                            </imagetype>
+                        </state>
+                    </statetype>
+
+                    <!-- shows the name of the currently active file.
+                        this is the same as the title in the top -->
+                    <!--<shape name="buttonimage_shape" from="base_background_shape">
+                        <area>1,1,162,26</area>
+                        <type>box</type>
+                        <line color="#000000" alpha="0" width="1" />
+                    </shape>
+                    <textarea name="buttontext">
+                        <area>0,4,164,20</area>
+                        <font>text_very_small</font>
+                        <align>allcenter</align>
+                        <cutdown>yes</cutdown>
+                    </textarea>-->
+
+                    <!-- show a folder above the image if its a folder and not an image.
+                        the node is a folder and it is currently not selected -->
+                    <statetype name="nodetype">
+                        <position>0,0</position>
+                        <state name="subfolder">
+                            <shape name="buttonimage_shape" from="base_background_shape">
+                                <area>1,93,162,30</area>
+                                <type>box</type>
+                                <line color="#000000" alpha="0" width="1" />
+                            </shape>
+                            <imagetype name="icon">
+                                <area>7,97,24,24</area>
+                                <filename>images/shared/folder.png</filename>
+                                <preserveaspect>yes</preserveaspect>
+                            </imagetype>
+                        </state>
+                        <state name="upfolder">
+                            <shape name="buttonimage_shape" from="base_background_shape">
+                                <area>1,93,162,30</area>
+                                <type>box</type>
+                                <line color="#000000" alpha="0" width="1" />
+                            </shape>
+                            <imagetype name="icon">
+                                <area>7,97,24,24</area>
+                                <filename>images/shared/folder_up.png</filename>
+                                <preserveaspect>yes</preserveaspect>
+                            </imagetype>
+                        </state>
+                    </statetype>
+
+                    <!-- show how many images / directories are in this directory -->
+                    <textarea name="childcount" from="base_textarea">
+                        <area>37,95,60,30</area>
+                        <font>text_small</font>
+                        <align>left,vcenter</align>
+                    </textarea>
+                </state>
+
+
+                <state name="selectedactive">
+                    <area>-38,-28,240,180</area>
+
+                    <imagetype name="buttonimage_background">
+                        <shape name="buttonimage_background_shape" from="base_background_shape_dark">
+                            <area>0,0,240,180</area>
+                            <line color="#000000" alpha="0" width="1" />
+                        </shape>
+                    </imagetype>
+                    
+                    <!-- this shows the actual image -->
+                    <imagetype name="buttonimage">
+                        <area>2,2,235,176</area>
+                        <preserveaspect>yes</preserveaspect>
+                    </imagetype>
+
+                    <imagetype name="buttonimage_border">
+                        <shape name="buttonimage_border_shape" from="base_background_shape">
+                            <area>0,0,240,180</area>
+                            <fill color="#000000" alpha="0" />
+                            <line color="#AAAAAA" alpha="150" width="2" />
+                        </shape>
+                    </imagetype>
+                    
+                    <!-- shows that the image was marked/selected and
+                        might be manipulated with other images -->
+                    <statetype name="buttoncheck">
+                        <position>2,2</position>
+                        <showempty>yes</showempty>
+                        <state type="full">
+                            <shape name="marked_background" from="base_background_shape">
+                                <area>0,0,33,33</area>
+                                <line color="#000000" alpha="0" width="1" />
+                            </shape>
+                            <imagetype name="marked">
+                                <filename>images/shared/file_marked.png</filename>
+                            </imagetype>
+                        </state>
+                    </statetype>
+
+                    <!-- shows the name of the currently active file.
+                        this is the same as the title in the top -->
+                    <!--<shape name="buttonimage_shape" from="base_background_shape">
+                        <area>1,1,238,26</area>
+                        <type>box</type>
+                        <line color="#000000" alpha="0" width="1" />
+                    </shape>
+                    <textarea name="buttontext">
+                        <area>0,4,240,20</area>
+                        <font>text_very_small</font>
+                        <align>allcenter</align>
+                        <cutdown>yes</cutdown>
+                    </textarea>-->
+
+                    <!-- show a folder above the image if its a folder and not an image.
+                        the node is a folder and it is currently not selected -->
+                    <statetype name="nodetype">
+                        <position>0,0</position>
+                        <state name="subfolder">
+                            <shape name="buttonimage_shape" from="base_background_shape">
+                                <area>1,139,238,40</area>
+                                <line color="#000000" alpha="0" width="1" />
+                            </shape>
+                            <imagetype name="icon">
+                                <area>9,144,32,32</area>
+                                <filename>images/shared/folder_open.png</filename>
+                                <preserveaspect>yes</preserveaspect>
+                            </imagetype>
+                        </state>
+                        <state name="upfolder">
+                            <shape name="buttonimage_shape" from="base_background_shape">
+                                <area>1,139,238,40</area>
+                                <line color="#000000" alpha="0" width="1" />
+                            </shape>
+                            <imagetype name="icon">
+                                <area>9,144,32,32</area>
+                                <filename>images/shared/folder_up_open.png</filename>
+                                <preserveaspect>yes</preserveaspect>
+                            </imagetype>
+                        </state>
+                    </statetype>
+
+                    <!-- show how many images / directories are in this directory -->
+                    <textarea name="childcount" from="base_textarea">
+                        <area>49,145,60,30</area>
+                        <font>text_small</font>
+                        <align>left,vcenter</align>
+                    </textarea>
+
+                </state>
+            </statetype>
+
+            <!-- Show the arrow image that indicates that there are
+                more menu entries above the first visible menu -->
+            <statetype name="upscrollarrow">
+                <position>1135,-20</position>
+                <state type="off">
+                    <imagetype name="upon" from="base_arrow_inactive">
+                        <filename>images/shared/arrow_up.png</filename>
+                    </imagetype>
+                </state>
+                <state type="full">
+                    <imagetype name="upoff" from="base_arrow_selectedactive">
+                        <filename>images/shared/arrow_up.png</filename>
+                    </imagetype>
+                </state>
+            </statetype>
+
+            <!-- Show the arrow image that indicates that there are
+                more menu entries below the last visible menu -->
+            <statetype name="downscrollarrow">
+                <position>1160,-20</position>
+                <state type="off">
+                    <imagetype name="dnon" from="base_arrow_inactive">
+                        <filename>images/shared/arrow_down.png</filename>
+                    </imagetype>
+                </state>
+                <state type="full">
+                    <imagetype name="dnoff" from="base_arrow_selectedactive">
+                        <filename>images/shared/arrow_down.png</filename>
+                    </imagetype>
+                </state>
+            </statetype>
+        </buttonlist>
+
+        <textarea name="noimages" from="base_textarea">
+            <area>225,60,830,633</area>
+            <align>allcenter</align>
+        </textarea>
+    </window>
+
+
+    <!-- Configuration dialog. This is currently used by the MythImage plugin only -->
+    <window name="galleryconfig">
+
+        <!-- the background image -->
+        <imagetype name="background">
+            <area>0,0,1280,720</area>
+            <filename>images/background.png</filename>
+        </imagetype>
+
+        <!-- The heading (name) of the screen -->
+        <textarea name="heading" from="base_heading">
+            <position>0,0</position>
+            <textarea name="text">
+            <value>Gallery Settings</value>
+            </textarea>
+        </textarea>
+
+        <!-- The clock that is shown at the top right of each screen -->
+        <textarea name="clock" from="base_clock">
+            <position>1040,0</position>
+        </textarea>
+
+        <!-- the shape where the imagelist is displayed -->
+        <shape name="settings_shape" from="base_background_shape">
+            <area>160,170,960,410</area>
+        </shape>
+
+        <textarea name="sgname_label" from="base_textarea">
+            <area>180,190,540,40</area>
+            <align>right,vcenter</align>
+            <value>Name of the storage group for the images:</value>
+        </textarea>
+        <textarea name="directoryfilter_label" from="sgname_label">
+            <position>180,240</position>
+            <value>Directories that should be hidden:</value>
+        </textarea>
+        <textarea name="sortorder_label" from="sgname_label">
+            <position>180,290</position>
+            <value>Sorting order of the images that are shown:</value>
+        </textarea>
+        <textarea name="slideshowtime_label" from="sgname_label">
+            <position>180,340</position>
+            <value>Time to display each image during a slideshow (ms):</value>
+        </textarea>
+        <textarea name="slideshowtype_label" from="sgname_label">
+            <position>180,390</position>
+            <value>Transition used between pictures in slideshow mode:</value>
+        </textarea>
+        <textarea name="slideshowtransitiontime_label" from="sgname_label">
+            <position>180,440</position>
+            <value>Duration of an image transition (ms):</value>
+        </textarea>
+
+        <textedit name="storagegroupname" from="base_textedit">
+            <position>730,190</position>
+        </textedit>
+        <textedit name="directoryfilter" from="base_textedit">
+            <position>730,240</position>
+        </textedit>
+        <buttonlist name="sortorder" from="base_selector_wide">
+            <position>730,290</position>
+        </buttonlist>
+        <spinbox name="slideshowtime" from="base_spinbox">
+            <position>730,340</position>
+        </spinbox>
+        <buttonlist name="slideshowtype" from="base_selector">
+            <position>730,390</position>
+        </buttonlist>
+        <spinbox name="slideshowtransitiontime" from="base_spinbox">
+            <position>730,440</position>
+        </spinbox>
+
+        <shape name="description_separator" from="base_separator_shape">
+            <area>180,500,920,1</area>
+        </shape>
+
+        <button name="save" from="base_button">
+            <position>510,520</position>
+            <value>Save</value>
+        </button>
+        <button name="cancel" from="base_button">
+            <position>680,520</position>
+            <value>Cancel</value>
+        </button>
+
+    </window>
+
+
+
+    <!-- Slideshow window which shows the a single image only or a slideshow.
+         This is currently used by the MythImage plugin only -->
+    <window name="slideshow">
+
+        <!-- the background image -->
+        <imagetype name="background">
+            <area>0,0,1280,720</area>
+            <filename>images/background.png</filename>
+        </imagetype>
+
+        <!-- The heading (name) of the screen -->
+        <textarea name="heading" from="base_heading">
+            <position>0,0</position>
+            <textarea name="text">
+            <value>Gallery Settings</value>
+            </textarea>
+        </textarea>
+
+        <!-- The clock that is shown at the top right of each screen -->
+        <textarea name="clock" from="base_clock">
+            <position>1040,0</position>
+        </textarea>
+
+        <!-- the shape around the image -->
+        <shape name="selectedimage_shape" from="base_background_shape">
+            <area>25,55,1230,640</area>
+            <fill color="#000000" alpha="255" />
+        </shape>
+
+        <!-- this is the image that shown in the foreground.
+             when fading is enabled this image is faded out. -->
+        <imagetype name="first_image">
+            <area>27,57,1226,636</area>
+            <preserveaspect>yes</preserveaspect>
+        </imagetype>
+
+        <!-- this is the image that shown in the background
+             when fading is enabled this image is faded in. -->
+        <imagetype name="second_image">
+            <area>27,57,1226,636</area>
+            <preserveaspect>yes</preserveaspect>
+        </imagetype>
+
+    </window>
+
+</mythuitheme>
